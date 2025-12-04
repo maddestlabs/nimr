@@ -11,6 +11,9 @@ nimr
 # docs/index.js
 # docs/index.wasm
 
+# Emscripten SDK (should be installed in CI, not committed)
+emsdk/
+
 # Editor files
 *.swp
 *.swo
