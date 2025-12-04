@@ -20,6 +20,15 @@ proc initBall(): Ball =
   result.radius = 40.0
   result.color = Maroon
 
+proc changeColor(color: Color, rDelta, gDelta, bDelta: int): Color =
+  ## Create a new color by adding deltas to each RGB component
+  Color(
+    r: uint8((int(color.r) + rDelta) mod 256),
+    g: uint8((int(color.g) + gDelta) mod 256),
+    b: uint8((int(color.b) + bDelta) mod 256),
+    a: 255
+  )
+
 proc update(ball: var Ball) =
   # Update ball position
   ball.position.x += ball.velocity.x
@@ -28,23 +37,11 @@ proc update(ball: var Ball) =
   # Bounce off walls
   if ball.position.x >= (ScreenWidth.float32 - ball.radius) or ball.position.x <= ball.radius:
     ball.velocity.x *= -1.0
-    # Change color on horizontal bounce
-    ball.color = Color(
-      r: (ball.color.r + 40) mod 256,
-      g: (ball.color.g + 60) mod 256,
-      b: (ball.color.b + 80) mod 256,
-      a: 255
-    )
+    ball.color = changeColor(ball.color, 40, 60, 80)
 
   if ball.position.y >= (ScreenHeight.float32 - ball.radius) or ball.position.y <= ball.radius:
     ball.velocity.y *= -1.0
-    # Change color on vertical bounce
-    ball.color = Color(
-      r: (ball.color.r + 50) mod 256,
-      g: (ball.color.g + 30) mod 256,
-      b: (ball.color.b + 70) mod 256,
-      a: 255
-    )
+    ball.color = changeColor(ball.color, 50, 30, 70)
 
 proc draw(ball: Ball) =
   drawCircleV(ball.position, ball.radius, ball.color)
