@@ -1,7 +1,7 @@
 ## Simple animated raylib example in Nim using naylib
 ## Compiled to WebAssembly for GitHub Pages
 
-import naylib
+import raylib
 
 const
   ScreenWidth = 800
@@ -44,7 +44,7 @@ proc update(ball: var Ball) =
     ball.color = changeColor(ball.color, 50, 30, 70)
 
 proc draw(ball: Ball) =
-  drawCircleV(ball.position, ball.radius, ball.color)
+  drawCircle(ball.position, ball.radius, ball.color)
   drawCircleLines(ball.position.x.int32, ball.position.y.int32, ball.radius, fade(White, 0.6))
 
 proc main() =
