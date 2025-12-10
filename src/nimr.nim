@@ -1,5 +1,4 @@
 ## Simple animated raylib example in Nim using naylib
-## Compiled to WebAssembly for GitHub Pages
 
 import raylib
 

@@ -24,3 +24,6 @@ emsdk/
 # OS files
 .DS_Store
 Thumbs.db
+nimble.develop
+nimble.paths
+nimbledeps

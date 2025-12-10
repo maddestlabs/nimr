@@ -17,10 +17,17 @@ NC='\033[0m' # No Color
 
 # Setup Emscripten environment
 echo -e "${BLUE}Setting up Emscripten environment...${NC}"
-source ./emsdk/emsdk_env.sh
+cd /workspaces/nimr/emsdk
+source ./emsdk_env.sh
+cd /workspaces/nimr
 
 # Add Nim to PATH
 export PATH=/home/codespace/.nimble/bin:$PATH
+
+# Verify emcc is available
+echo -e "${BLUE}Verifying emcc...${NC}"
+which emcc || { echo -e "${RED}emcc not found in PATH${NC}"; exit 1; }
+emcc --version
 
 # Create docs directory if it doesn't exist
 echo -e "${BLUE}Creating docs directory...${NC}"
@@ -32,7 +39,7 @@ rm -f docs/index.html docs/index.js docs/index.wasm
 
 # Compile nimr.nim to WebAssembly
 echo -e "${BLUE}Compiling nimr.nim to WebAssembly...${NC}"
-nim c -d:emscripten -d:release --mm:orc src/nimr.nim
+nim c -d:emscripten -d:release --opt:size --mm:orc src/nimr.nim
 
 # Check if build was successful
 if [ -f "docs/index.html" ]; then

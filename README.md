@@ -1,33 +1,45 @@
-# nimr
+# NimR
 
-🎮 Simple animated raylib example in Nim compiled to WebAssembly for easy viewing on GitHub Pages.
+Simple animated [raylib](https://www.raylib.com/) example in Nim compiled to WebAssembly for easy deployment on GitHub Pages. No need to install anything, GitHub Actions take care of everything.
 
-[![Build and Deploy](https://github.com/maddestlabs/nimr/actions/workflows/deploy.yml/badge.svg)](https://github.com/maddestlabs/nimr/actions/workflows/deploy.yml)
+Check it out live: **[Demo](https://maddestlabs.github.io/nimr/)**
 
-## 🚀 Live Demo
+## Quick Start
 
-**[View Demo on GitHub Pages](https://maddestlabs.github.io/nimr/)**
+- Create a project from the [template](https://github.com/new?template_name=nimr&template_owner=maddestlabs)
+- Edit src/nimr.nim and save your changes.
+- Enable GitHub Pages to see your changes live.
 
-## ✨ Features
+## Features
 
-- Bouncing ball animation with color changes
-- Built with [Nim](https://nim-lang.org) + [naylib](https://github.com/planetis-m/naylib) + [raylib](https://www.raylib.com)
-- Compiled to WebAssembly using Emscripten
-- Automatic deployment to GitHub Pages via GitHub Actions
+- Built with [Nim](https://nim-lang.org) + [naylib](https://github.com/planetis-m/naylib) + [raylib](https://www.raylib.com). Super fast compilation, small binaries, readable code.
+- Auto-compiled to WebAssembly using Emscripten
+- Automatic deployment to GitHub Pages
 
-## 🛠️ Building Locally
+## Building Locally
 
-### Prerequisites
-
+Prerequisites
 - [Nim](https://nim-lang.org/install.html) (2.0+)
-- [Emscripten](https://emscripten.org/docs/getting_started/downloads.html)
 - [Nimble](https://github.com/nim-lang/nimble) (comes with Nim)
 
-### Build for Web (WASM)
+### Build for Desktop (Native)
 
 ```bash
 # Install dependencies
-nimble install -y
+nimble install naylib -y
+
+# Build for desktop
+nim c -d:release src/nimr.nim
+```
+
+### Build for Web (WASM)
+
+Prerequisites
+- [Emscripten](https://emscripten.org/docs/getting_started/downloads.html)
+
+```bash
+# Install dependencies
+nimble install naylib -y
 
 # Build for web (output in docs/)
 nim c -d:emscripten src/nimr.nim
@@ -36,17 +48,7 @@ nim c -d:emscripten src/nimr.nim
 cd docs && python3 -m http.server 8080
 ```
 
-### Build for Desktop (Native)
-
-```bash
-# Install dependencies
-nimble install -y
-
-# Build for desktop
-nim c -d:release src/nimr.nim
-```
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 nimr/
@@ -61,6 +63,6 @@ nimr/
     └── deploy.yml        # CI/CD workflow
 ```
 
-## 📄 License
+## License
 
 MIT License - see [LICENSE](LICENSE) for details.
