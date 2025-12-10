@@ -43,7 +43,7 @@ rm -f docs/index.html docs/index.js docs/index.wasm
 
 # Compile nimr.nim to WebAssembly
 echo -e "${BLUE}Compiling nimr.nim to WebAssembly...${NC}"
-nim c -d:emscripten -d:release --opt:size --mm:orc src/nimr.nim
+nim c -d:emscripten -d:release --opt:size --mm:orc nimr.nim
 
 # Check if build was successful
 if [ -f "docs/index.html" ]; then

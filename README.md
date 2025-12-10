@@ -6,30 +6,32 @@ Check it out live: **[Demo](https://maddestlabs.github.io/nimr/)**
 
 ## Quick Start
 
-- Create a project from the [template](https://github.com/new?template_name=nimr&template_owner=maddestlabs)
-- Edit src/nimr.nim and save your changes.
+- Create a project from the [template](https://github.com/new?template_name=nimr&template_owner=maddestlabs).
+- Edit nimr.nim and save your changes.
 - Enable GitHub Pages to see your changes live.
 
 ## Features
 
 - Built with [Nim](https://nim-lang.org) + [naylib](https://github.com/planetis-m/naylib) + [raylib](https://www.raylib.com). Super fast compilation, small binaries, readable code.
-- Auto-compiled to WebAssembly using Emscripten
-- Automatic deployment to GitHub Pages
+- Auto-compiled to WebAssembly using Emscripten.
+- Automatic deployment to GitHub Pages.
 
 ## Building Locally
 
 Prerequisites
 - [Nim](https://nim-lang.org/install.html) (2.0+)
-- [Nimble](https://github.com/nim-lang/nimble) (comes with Nim)
 
 ### Build for Desktop (Native)
 
 ```bash
+# Install Nim
+curl https://nim-lang.org/choosenim/init.sh -sSf | sh
+
 # Install dependencies
 nimble install naylib -y
 
 # Build for desktop
-nim c -d:release src/nimr.nim
+nim c -d:release nimr.nim
 ```
 
 ### Build for Web (WASM)
@@ -42,7 +44,7 @@ Prerequisites
 nimble install naylib -y
 
 # Build for web (output in docs/)
-nim c -d:emscripten src/nimr.nim
+nim c -d:emscripten nimr.nim
 
 # Serve locally (optional)
 cd docs && python3 -m http.server 8080
@@ -56,7 +58,7 @@ nimr/
 │   └── nimr.nim          # Main application source
 ├── web/
 │   └── shell.html        # HTML template for WASM
-├── docs/                  # Generated WASM output (GitHub Pages)
+├── docs/                 # Generated WASM output (GitHub Pages)
 ├── nim.cfg               # Nim configuration
 ├── nimr.nimble           # Package definition
 └── .github/workflows/
