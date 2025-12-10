@@ -44,7 +44,7 @@ jobs:
           version: 3.1.55
 
       - name: Install dependencies
-        run: nimble install -y
+        run: nimble install naylib -y
 
       - name: Build for Web (WASM)
         run: ./build.sh
