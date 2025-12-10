@@ -15,11 +15,15 @@ BLUE='\033[0;34m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-# Setup Emscripten environment
-echo -e "${BLUE}Setting up Emscripten environment...${NC}"
-cd /workspaces/nimr/emsdk
-source ./emsdk_env.sh
-cd /workspaces/nimr
+# Setup Emscripten environment (if running locally)
+if [ -d "/workspaces/nimr/emsdk" ]; then
+  echo -e "${BLUE}Setting up Emscripten environment (local)...${NC}"
+  cd /workspaces/nimr/emsdk
+  source ./emsdk_env.sh
+  cd /workspaces/nimr
+else
+  echo -e "${BLUE}Using pre-configured Emscripten (CI)...${NC}"
+fi
 
 # Add Nim to PATH
 export PATH=/home/codespace/.nimble/bin:$PATH
